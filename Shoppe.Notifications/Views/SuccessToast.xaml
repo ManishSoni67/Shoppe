@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="Shoppe.Notifications.Views.SuccessToast"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="70" d:DesignWidth="480">
+    <UserControl.Resources>
+
+
+        <Storyboard x:Key="Str_ShowNotification" Duration="0:0:0.4">
+            <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetName="Trns_Border" Storyboard.TargetProperty="TranslateY" To="0"/>
+            <DoubleAnimation BeginTime="0:0:0.1"  Duration="0:0:0.3" Storyboard.TargetName="Proj_MainContent" Storyboard.TargetProperty="RotationY" To="0"/>
+        </Storyboard>
+
+        <Storyboard x:Key="Str_HideNotification" Duration="0:0:0.3">
+            <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetName="Trns_Border" Storyboard.TargetProperty="TranslateY" To="110"/>
+            <DoubleAnimation BeginTime="0:0:0.1"  Duration="0:0:0.3" Storyboard.TargetName="Proj_MainContent" Storyboard.TargetProperty="RotationY" To="90"/>
+        </Storyboard>
+    </UserControl.Resources>
+    <Border x:Name="MainBorder" BorderThickness="2" Background="{StaticResource SuccessColor}" RenderTransformOrigin="0.5,0.5">
+        <Border.RenderTransform>
+            <CompositeTransform x:Name="Trns_Border" TranslateY="110"/>
+        </Border.RenderTransform>
+
+        <Grid x:Name="LayoutRoot">
+            <Grid.Projection>
+                <PlaneProjection x:Name="Proj_MainContent" RotationY="90"/>
+            </Grid.Projection>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Image Width="50" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center" Source="/Assets/Right(Small).png" Margin="5,0,0,0"/>
+            <TextBlock x:Name="txt_Content" TextWrapping="Wrap" Text="Message" VerticalAlignment="Center" Foreground="White" Grid.Column="1" FontSize="32" Margin="10,0,0,0"/>
+        </Grid>
+    </Border>
+</UserControl>

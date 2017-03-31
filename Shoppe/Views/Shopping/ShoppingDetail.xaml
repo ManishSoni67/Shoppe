@@ -1,0 +1,59 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Shoppe" x:Class="Shoppe.ShoppingDetail"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="480">
+	<UserControl.Resources>
+		<local:BoolToVisibilityConvertor x:Key="BoolToVisibilityConvertor"/>
+	</UserControl.Resources>
+    
+	<UserControl.FontFamily>
+		<StaticResource ResourceKey="PhoneFontFamilyNormal"/>
+	</UserControl.FontFamily>
+	<UserControl.FontSize>
+		<StaticResource ResourceKey="PhoneFontSizeNormal"/>
+	</UserControl.FontSize>
+	<UserControl.Foreground>
+		<StaticResource ResourceKey="PhoneForegroundBrush"/>
+	</UserControl.Foreground>
+	<UserControl.DataContext>
+		<local:ShoppingDetailVM/>
+	</UserControl.DataContext>
+    
+	<Grid x:Name="LayoutRoot" Background="White">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Shopping.Title, Mode=TwoWay}" VerticalAlignment="Center" Foreground="{StaticResource darkGray}" FontSize="48" Margin="20,0,0,0"/>
+		<Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Background="{StaticResource NotificationColor}" Width="20"/>
+		<Border BorderBrush="Black" BorderThickness="1" Background="{StaticResource darkGray}" VerticalAlignment="Bottom" Height="5"/>
+		<Grid  Grid.Row="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				
+				<RowDefinition Height="Auto" />
+				
+				<RowDefinition Height="Auto" />
+				
+				<RowDefinition Height="Auto" />
+				
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Title: " VerticalAlignment="Center" Foreground="{StaticResource darkGray}"/>
+			<TextBox x:Name="Txt_Name" TextWrapping="Wrap" Text="{Binding Shopping.Title, Mode=TwoWay}" VerticalAlignment="Center" Foreground="{StaticResource darkGray}" BorderBrush="{StaticResource darkGray}" Grid.Column="1"/>
+			<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Qty: " VerticalAlignment="Center" Foreground="{StaticResource darkGray}" Grid.Row="1"/>
+			<TextBlock TextWrapping="Wrap" Text="{Binding QTY, Mode=TwoWay, StringFormat=\{0:F\}}" VerticalAlignment="Center" Foreground="{StaticResource ClrMoneyColor}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" FontSize="29.333" FontWeight="Bold" Margin="0"/>
+			<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Avg.: " VerticalAlignment="Center" Foreground="{StaticResource darkGray}" Grid.Row="2"/>
+			<TextBlock TextWrapping="Wrap" Text="{Binding Avg, Mode=TwoWay, StringFormat=\{0:N\}}" VerticalAlignment="Center" Foreground="{StaticResource ClrMoneyColor}"  Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" FontSize="29.333" FontWeight="Bold" Margin="0"/>
+			<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Amount, Mode=TwoWay, StringFormat=\{0:N\}}" VerticalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="2" FontSize="48" FontWeight="Bold" Foreground="{StaticResource ClrMoneyColor}"/>
+		</Grid>
+	</Grid>
+</UserControl>
